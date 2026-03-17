@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Mail, Check, Lock } from 'lucide-react'
+import { Check } from 'lucide-react'
 import { toast } from 'sonner'
 import { useUpgrade } from '@/context/UpgradeContext'
 import { locations } from '@/lib/mockData'
@@ -53,14 +53,14 @@ function EmailPreview() {
           </div>
 
           <div className="border-t border-gray-200 pt-4 mb-4">
-            <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">WHAT'S WORKING</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">WHAT&apos;S WORKING</div>
             <div className="space-y-3">
               <div className="flex items-start gap-2">
                 <span className="text-green-600 font-bold">✓</span>
                 <div>
                   <div className="font-medium">Instructor energy remains your #1 strength</div>
                   <div className="text-gray-500 mt-0.5 italic text-xs">
-                    "Sarah's 7am class is the only reason I get out of bed." — Member #4821, Mar 12
+                    &quot;Sarah&apos;s 7am class is the only reason I get out of bed.&quot; — Member #4821, Mar 12
                   </div>
                 </div>
               </div>
@@ -82,14 +82,14 @@ function EmailPreview() {
                 <div className="font-medium">Lily C. — score declined for the 2nd consecutive week (3.4)</div>
                 <div className="text-gray-500 mt-0.5 text-xs">Members are flagging low energy in evening classes.</div>
                 <div className="text-gray-500 mt-0.5 italic text-xs">
-                  "I left the 6pm class early. The pacing was really off." — Member #4409, Mar 7
+                  &quot;I left the 6pm class early. The pacing was really off.&quot; — Member #4409, Mar 7
                 </div>
               </div>
             </div>
           </div>
 
           <div className="border-t border-gray-200 pt-4 mb-4">
-            <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">THIS WEEK'S FEEDBACK VOLUME</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">THIS WEEK&apos;S FEEDBACK VOLUME</div>
             <div className="text-sm space-y-1">
               <div>📩 54 members responded <span className="text-green-600">(↑ 12% vs. last week)</span></div>
               <div className="text-gray-500">📍 Feedback collected via Edge SMS after each visit</div>
@@ -103,7 +103,7 @@ function EmailPreview() {
 
           <div className="border-t border-gray-200 mt-4 pt-4 text-xs text-gray-400">
             <div className="font-medium text-gray-500">Powered by Edge Intelligence</div>
-            <div>You're receiving this because you opted into weekly digests. <a href="#" className="underline">Unsubscribe</a></div>
+            <div>You&apos;re receiving this because you opted into weekly digests. <a href="#" className="underline">Unsubscribe</a></div>
           </div>
         </div>
       </div>

@@ -67,8 +67,8 @@ export default function UpgradePage() {
         {/* Social proof */}
         <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
           <p className="text-sm text-zinc-300 italic leading-relaxed mb-3">
-            "This is exactly what I've been trying to build manually. I've been doing this with
-            spreadsheets for years."
+            &quot;This is exactly what I&apos;ve been trying to build manually. I&apos;ve been doing this with
+            spreadsheets for years.&quot;
           </p>
           <p className="text-xs text-zinc-600">— Fitness Director, Boston</p>
         </div>
@@ -123,7 +123,7 @@ export default function UpgradePage() {
                     </form>
 
                     <p className="text-xs text-zinc-600 text-center mt-3">
-                      Your insights are already collecting. You're just unlocking the view.
+                      Your insights are already collecting. You&apos;re just unlocking the view.
                     </p>
                   </CardContent>
                 </Card>
@@ -144,9 +144,9 @@ export default function UpgradePage() {
                   <Check className="w-8 h-8 text-violet-400" />
                 </motion.div>
 
-                <h2 className="text-2xl font-bold text-zinc-50 mb-2">You're in. Trial activated.</h2>
+                <h2 className="text-2xl font-bold text-zinc-50 mb-2">You&apos;re in. Trial activated.</h2>
                 <p className="text-sm text-zinc-400 mb-6">
-                  Employee Intelligence is now unlocked for 30 days. Explore your team's performance below.
+                  Employee Intelligence is now unlocked for 30 days. Explore your team&apos;s performance below.
                 </p>
 
                 <Button onClick={handleGoToEmployees} className="w-full" size="lg">
