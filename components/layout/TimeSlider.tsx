@@ -19,7 +19,7 @@ export function TimeSlider() {
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1">
+      <div className="flex items-center gap-1 bg-gray-100 dark:bg-zinc-800 rounded-lg p-1">
         {positions.map((pos) => (
           <button
             key={pos.value}
@@ -27,14 +27,14 @@ export function TimeSlider() {
             className={cn(
               'relative px-3 py-1.5 rounded-md text-xs font-medium transition-colors duration-150 z-10',
               timeState === pos.value
-                ? 'text-zinc-50'
-                : 'text-zinc-500 hover:text-zinc-300'
+                ? 'text-zinc-900 dark:text-zinc-50'
+                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
             )}
           >
             {timeState === pos.value && (
               <motion.div
                 layoutId="slider-pill"
-                className="absolute inset-0 bg-zinc-700 rounded-md"
+                className="absolute inset-0 bg-gray-200 dark:bg-zinc-700 rounded-md"
                 style={{ zIndex: -1 }}
                 transition={{ type: 'spring', bounce: 0.2, duration: 0.3 }}
               />
@@ -44,7 +44,7 @@ export function TimeSlider() {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-xs text-zinc-600">Viewing insights {current.sublabel}</span>
+        <span className="text-xs text-zinc-400 dark:text-zinc-600">Viewing insights {current.sublabel}</span>
         {timeState === 'day1' && (
           <span className="text-xs bg-amber-400/10 text-amber-400 border border-amber-400/20 rounded px-1.5 py-0.5 font-medium">
             SAMPLE DATA

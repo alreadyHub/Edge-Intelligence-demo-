@@ -1,16 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Bell } from 'lucide-react'
+import { Bell, Sun, Moon } from 'lucide-react'
 import { TimeSlider } from './TimeSlider'
 import { cn } from '@/lib/utils'
+import { useTheme } from '@/context/ThemeContext'
 
 const comparePeriods = ['vs. 30d', 'vs. 60d', 'vs. 90d'] as const
 export type ComparePeriod = typeof comparePeriods[number]
-
-// We expose a context for comparison period — keep it simple with a local state passed via prop
-// Actually let's just use a shared context approach or make it a module-level singleton
-// For the prototype, we'll use a simple approach with sessionStorage or just local state
 
 import { createContext, useContext, ReactNode } from 'react'
 
@@ -39,12 +36,13 @@ export function useCompare() {
 
 export function TopBar({ title }: { title?: string }) {
   const { comparePeriod, setComparePeriod } = useCompare()
+  const { theme, toggleTheme } = useTheme()
 
   return (
-    <header className="fixed top-0 left-60 right-0 h-14 bg-zinc-900 border-b border-zinc-800 flex items-center px-6 z-30">
+    <header className="fixed top-0 left-60 right-0 h-14 bg-gray-50 dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 flex items-center px-6 z-30">
       <div className="flex-1">
         {title && (
-          <h1 className="text-sm font-semibold text-zinc-100">{title}</h1>
+          <h1 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{title}</h1>
         )}
       </div>
 
@@ -54,7 +52,7 @@ export function TopBar({ title }: { title?: string }) {
 
       <div className="flex-1 flex items-center justify-end gap-3">
         {/* Comparison toggle */}
-        <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1">
+        <div className="flex items-center gap-1 bg-gray-100 dark:bg-zinc-800 rounded-lg p-1">
           {comparePeriods.map((p) => (
             <button
               key={p}
@@ -62,8 +60,8 @@ export function TopBar({ title }: { title?: string }) {
               className={cn(
                 'px-2.5 py-1 rounded-md text-xs font-medium transition-colors',
                 comparePeriod === p
-                  ? 'bg-zinc-700 text-zinc-100'
-                  : 'text-zinc-500 hover:text-zinc-300'
+                  ? 'bg-gray-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100'
+                  : 'text-zinc-500 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
               )}
             >
               {p}
@@ -71,7 +69,16 @@ export function TopBar({ title }: { title?: string }) {
           ))}
         </div>
 
-        <button className="w-8 h-8 rounded-md flex items-center justify-center text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800 transition-colors">
+        {/* Theme toggle */}
+        <button
+          onClick={toggleTheme}
+          className="w-8 h-8 rounded-md flex items-center justify-center text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+          aria-label="Toggle theme"
+        >
+          {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+        </button>
+
+        <button className="w-8 h-8 rounded-md flex items-center justify-center text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
           <Bell className="w-4 h-4" />
         </button>
 

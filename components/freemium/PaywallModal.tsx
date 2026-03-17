@@ -37,10 +37,10 @@ export function PaywallModal({ open, onClose }: PaywallModalProps) {
             transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
             className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-md"
           >
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-2xl">
+            <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-6 shadow-2xl">
               <button
                 onClick={onClose}
-                className="absolute right-4 top-4 text-zinc-500 hover:text-zinc-300 transition-colors"
+                className="absolute right-4 top-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -50,18 +50,18 @@ export function PaywallModal({ open, onClose }: PaywallModalProps) {
                   <Users className="w-5 h-5 text-violet-400" />
                 </div>
                 <div>
-                  <h2 className="text-base font-semibold text-zinc-50">Employee Intelligence</h2>
+                  <h2 className="text-base font-semibold text-zinc-900 dark:text-zinc-50">Employee Intelligence</h2>
                   <p className="text-xs text-zinc-500">Premium feature</p>
                 </div>
               </div>
 
-              <p className="text-sm text-zinc-400 mb-4">
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
                 See exactly how each instructor is performing based on real member feedback — not guesswork.
               </p>
 
               <ul className="space-y-2 mb-6">
                 {features.map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-zinc-300">
+                  <li key={f} className="flex items-start gap-2 text-sm text-zinc-600 dark:text-zinc-300">
                     <Check className="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" />
                     {f}
                   </li>
@@ -71,7 +71,7 @@ export function PaywallModal({ open, onClose }: PaywallModalProps) {
               <Link href="/upgrade" onClick={onClose}>
                 <Button className="w-full">Start 30-Day Free Trial</Button>
               </Link>
-              <p className="text-xs text-zinc-600 text-center mt-2">No credit card required. Cancel anytime.</p>
+              <p className="text-xs text-zinc-400 dark:text-zinc-600 text-center mt-2">No credit card required. Cancel anytime.</p>
             </div>
           </motion.div>
         </>

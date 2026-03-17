@@ -5,6 +5,7 @@ import {
   Legend, ResponsiveContainer,
 } from 'recharts'
 import { useTime } from '@/context/TimeContext'
+import { useTheme } from '@/context/ThemeContext'
 import { locations } from '@/lib/mockData'
 import { WeeklyDataPoint } from '@/types'
 
@@ -41,13 +42,13 @@ interface CustomTooltipProps { active?: boolean; payload?: TooltipPayload[]; lab
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
   if (!active || !payload?.length) return null
   return (
-    <div className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-xs shadow-xl">
-      <p className="text-zinc-400 mb-1.5 font-medium">{label}</p>
+    <div className="bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg px-3 py-2 text-xs shadow-xl">
+      <p className="text-zinc-500 dark:text-zinc-400 mb-1.5 font-medium">{label}</p>
       {payload.map((p) => (
         <div key={p.dataKey} className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full" style={{ background: p.color }} />
-          <span className="text-zinc-400">{locations.find(l => l.id === p.dataKey)?.name}</span>
-          <span className="font-mono text-zinc-100 ml-auto pl-4">{p.value?.toFixed(1)}</span>
+          <span className="text-zinc-500 dark:text-zinc-400">{locations.find(l => l.id === p.dataKey)?.name}</span>
+          <span className="font-mono text-zinc-800 dark:text-zinc-100 ml-auto pl-4">{p.value?.toFixed(1)}</span>
         </div>
       ))}
     </div>
@@ -56,7 +57,11 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 
 export function TrendChart({ singleLocationId }: { singleLocationId?: string }) {
   const { timeState } = useTime()
+  const { theme } = useTheme()
   const timeKey = timeState === 'day1' ? '30days' : timeState as '30days' | '90days'
+
+  const tickColor = theme === 'dark' ? '#71717a' : '#a1a1aa'
+  const gridColor = theme === 'dark' ? '#27272a' : '#e4e4e7'
 
   const visibleLocations = singleLocationId
     ? locations.filter(l => l.id === singleLocationId)
@@ -72,16 +77,16 @@ export function TrendChart({ singleLocationId }: { singleLocationId?: string }) 
     <div className="w-full h-56">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#27272a" />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
           <XAxis
             dataKey="week"
-            tick={{ fill: '#71717a', fontSize: 11 }}
-            axisLine={{ stroke: '#27272a' }}
+            tick={{ fill: tickColor, fontSize: 11 }}
+            axisLine={{ stroke: gridColor }}
             tickLine={false}
           />
           <YAxis
             domain={[2.5, 5]}
-            tick={{ fill: '#71717a', fontSize: 11, fontFamily: 'JetBrains Mono' }}
+            tick={{ fill: tickColor, fontSize: 11, fontFamily: 'JetBrains Mono' }}
             axisLine={false}
             tickLine={false}
           />
@@ -90,7 +95,7 @@ export function TrendChart({ singleLocationId }: { singleLocationId?: string }) 
             <Legend
               wrapperStyle={{ fontSize: '11px', paddingTop: '8px' }}
               formatter={(value) => (
-                <span style={{ color: '#a1a1aa' }}>
+                <span style={{ color: tickColor }}>
                   {locations.find(l => l.id === value)?.name || value}
                 </span>
               )}

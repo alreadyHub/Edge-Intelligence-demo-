@@ -24,12 +24,12 @@ export function LocationCard({ location, showSparkline }: LocationCardProps) {
   const status = location.status[scoreKey]
 
   return (
-    <Card className="hover:border-zinc-700 transition-colors">
+    <Card className="hover:border-gray-300 dark:hover:border-zinc-700 transition-colors">
       <CardContent className="p-4">
         <div className="flex items-start justify-between mb-3">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-100">{location.name}</h3>
-            <p className="text-xs text-zinc-500">{location.city}</p>
+            <h3 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">{location.name}</h3>
+            <p className="text-xs text-zinc-400 dark:text-zinc-500">{location.city}</p>
           </div>
           <Badge
             className={`text-xs border ${getStatusColor(status)}`}
@@ -45,7 +45,7 @@ export function LocationCard({ location, showSparkline }: LocationCardProps) {
               ? location.scores.day1.toFixed(1)
               : location.scores[scoreKey].toFixed(1)}
           </span>
-          <span className="text-zinc-600 font-mono text-sm">/5.0</span>
+          <span className="text-zinc-400 dark:text-zinc-600 font-mono text-sm">/5.0</span>
         </div>
 
         <div className={`text-xs font-mono mb-3 ${getDeltaColor(delta)}`}>
@@ -59,12 +59,12 @@ export function LocationCard({ location, showSparkline }: LocationCardProps) {
         )}
 
         <div className="space-y-1 mb-3">
-          <p className="text-xs text-zinc-500 italic">✓ {location.topStrength}</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-500 italic">✓ {location.topStrength}</p>
           <p className="text-xs text-amber-400/80 italic">⚠ {location.topIssue}</p>
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="text-xs text-zinc-600">
+          <span className="text-xs text-zinc-400 dark:text-zinc-600">
             {timeState === 'day1' ? 'Sample data' : `${location.feedbackCounts[scoreKey].toLocaleString()} responses`}
           </span>
           <Link

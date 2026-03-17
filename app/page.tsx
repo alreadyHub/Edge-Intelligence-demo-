@@ -23,7 +23,7 @@ function EmptyStateBanner({ onDismiss }: { onDismiss: () => void }) {
     >
       <button
         onClick={onDismiss}
-        className="absolute right-4 top-4 text-zinc-500 hover:text-zinc-300"
+        className="absolute right-4 top-4 text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300"
       >
         <X className="w-4 h-4" />
       </button>
@@ -31,8 +31,8 @@ function EmptyStateBanner({ onDismiss }: { onDismiss: () => void }) {
       <div className="flex items-start gap-4">
         <Sparkles className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
         <div className="flex-1">
-          <h3 className="text-sm font-semibold text-zinc-100 mb-1">Your insights are building.</h3>
-          <p className="text-sm text-zinc-400 mb-4">
+          <h3 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-1">Your insights are building.</h3>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-4">
             These are sample insights so you can see what Edge Intelligence will look like for your team.
             Every time a member leaves feedback after a visit, your real insights get richer.
           </p>
@@ -44,13 +44,13 @@ function EmptyStateBanner({ onDismiss }: { onDismiss: () => void }) {
             ].map((step, i, arr) => (
               <div key={step.label} className="flex items-center">
                 <div className="flex flex-col items-center">
-                  <div className={`w-2.5 h-2.5 rounded-full border-2 ${step.active ? 'bg-amber-400 border-amber-400' : 'bg-transparent border-zinc-700'}`} />
-                  <span className={`text-xs mt-1 ${step.active ? 'text-amber-400' : 'text-zinc-600'}`}>
+                  <div className={`w-2.5 h-2.5 rounded-full border-2 ${step.active ? 'bg-amber-400 border-amber-400' : 'bg-transparent border-gray-300 dark:border-zinc-700'}`} />
+                  <span className={`text-xs mt-1 ${step.active ? 'text-amber-400' : 'text-zinc-400 dark:text-zinc-600'}`}>
                     {step.label}
                   </span>
                 </div>
                 {i < arr.length - 1 && (
-                  <div className={`h-px w-16 mb-4 mx-2 ${step.active ? 'bg-amber-400/40' : 'bg-zinc-800'}`} />
+                  <div className={`h-px w-16 mb-4 mx-2 ${step.active ? 'bg-amber-400/40' : 'bg-gray-200 dark:bg-zinc-800'}`} />
                 )}
               </div>
             ))}
@@ -112,14 +112,14 @@ export default function DashboardPage() {
       </div>
 
       {/* Score trend chart */}
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 mb-6">
+      <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-sm font-semibold text-zinc-100">Score Trends — All Locations</h2>
-            <p className="text-xs text-zinc-500 mt-0.5">Weekly average score by location</p>
+            <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Score Trends — All Locations</h2>
+            <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">Weekly average score by location</p>
           </div>
           {upgradeStatus === 'free' && (
-            <span className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-500 rounded px-2 py-1">
+            <span className="text-xs bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-zinc-500 rounded px-2 py-1">
               Employee-level trends available in Premium
             </span>
           )}
@@ -129,7 +129,7 @@ export default function DashboardPage() {
 
       {/* Locations grid */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-zinc-100 mb-3">Locations</h2>
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Locations</h2>
         <div className="grid grid-cols-3 gap-4">
           {locations.map(loc => (
             <LocationCard key={loc.id} location={loc} />
@@ -139,7 +139,7 @@ export default function DashboardPage() {
 
       {/* Top Issues */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-zinc-100 mb-3">Top Issues This Period</h2>
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Top Issues This Period</h2>
         <div className="space-y-2">
           {visibleIssues.map((issue, i) => (
             <IssueCard
@@ -151,14 +151,14 @@ export default function DashboardPage() {
             />
           ))}
           {timeState === 'day1' && (
-            <p className="text-xs text-zinc-600 text-center py-2">More issues will surface as feedback accumulates</p>
+            <p className="text-xs text-zinc-400 dark:text-zinc-600 text-center py-2">More issues will surface as feedback accumulates</p>
           )}
         </div>
       </div>
 
       {/* Top Performers / Coaching */}
       <div>
-        <h2 className="text-sm font-semibold text-zinc-100 mb-3">Performance Intelligence</h2>
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Performance Intelligence</h2>
         <TopPerformers />
       </div>
     </div>

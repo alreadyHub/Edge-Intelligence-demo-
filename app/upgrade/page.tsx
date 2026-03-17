@@ -42,13 +42,13 @@ export default function UpgradePage() {
           <div className="w-6 h-6 rounded bg-violet-600 flex items-center justify-center">
             <Zap className="w-3.5 h-3.5 text-white" />
           </div>
-          <span className="text-sm font-semibold text-zinc-300">Edge Intelligence</span>
+          <span className="text-sm font-semibold text-zinc-600 dark:text-zinc-300">Edge Intelligence</span>
         </div>
 
-        <h1 className="text-4xl font-bold text-zinc-50 mb-4 leading-tight">
+        <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-4 leading-tight">
           Unlock Employee Intelligence
         </h1>
-        <p className="text-lg text-zinc-400 mb-8 leading-relaxed">
+        <p className="text-lg text-zinc-500 dark:text-zinc-400 mb-8 leading-relaxed">
           Your members are already telling you which instructors are thriving and which need support.
           Edge Intelligence makes it visible.
         </p>
@@ -59,27 +59,27 @@ export default function UpgradePage() {
               <div className="w-5 h-5 rounded-full bg-violet-600/20 border border-violet-600/40 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <Check className="w-3 h-3 text-violet-400" />
               </div>
-              <span className="text-zinc-300 text-sm">{f}</span>
+              <span className="text-zinc-600 dark:text-zinc-300 text-sm">{f}</span>
             </li>
           ))}
         </ul>
 
         {/* Social proof */}
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-          <p className="text-sm text-zinc-300 italic leading-relaxed mb-3">
+        <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-gray-50 dark:bg-zinc-900/50 p-5">
+          <p className="text-sm text-zinc-600 dark:text-zinc-300 italic leading-relaxed mb-3">
             &quot;This is exactly what I&apos;ve been trying to build manually. I&apos;ve been doing this with
             spreadsheets for years.&quot;
           </p>
-          <p className="text-xs text-zinc-600">— Fitness Director, Boston</p>
+          <p className="text-xs text-zinc-400 dark:text-zinc-600">— Fitness Director, Boston</p>
         </div>
 
-        <p className="text-xs text-zinc-600 mt-6">
+        <p className="text-xs text-zinc-400 dark:text-zinc-600 mt-6">
           30-day free trial. No credit card required. Cancel anytime.
         </p>
       </div>
 
       {/* Right side */}
-      <div className="flex-[2] flex items-center justify-center p-12 border-l border-zinc-800">
+      <div className="flex-[2] flex items-center justify-center p-12 border-l border-gray-200 dark:border-zinc-800">
         <div className="w-full max-w-sm">
           <AnimatePresence mode="wait">
             {!submitted ? (
@@ -91,12 +91,12 @@ export default function UpgradePage() {
               >
                 <Card>
                   <CardContent className="p-6">
-                    <h2 className="text-base font-semibold text-zinc-100 mb-1">Start your free trial</h2>
-                    <p className="text-xs text-zinc-500 mb-5">No credit card required</p>
+                    <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100 mb-1">Start your free trial</h2>
+                    <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-5">No credit card required</p>
 
                     <form onSubmit={handleSubmit} className="space-y-3">
                       <div>
-                        <label className="text-xs text-zinc-500 mb-1.5 block">Work email</label>
+                        <label className="text-xs text-zinc-400 dark:text-zinc-500 mb-1.5 block">Work email</label>
                         <Input
                           type="email"
                           value={email}
@@ -106,7 +106,7 @@ export default function UpgradePage() {
                         />
                       </div>
                       <div>
-                        <label className="text-xs text-zinc-500 mb-1.5 block">Studio / gym name</label>
+                        <label className="text-xs text-zinc-400 dark:text-zinc-500 mb-1.5 block">Studio / gym name</label>
                         <Input
                           type="text"
                           value={orgName}
@@ -122,7 +122,7 @@ export default function UpgradePage() {
                       </Button>
                     </form>
 
-                    <p className="text-xs text-zinc-600 text-center mt-3">
+                    <p className="text-xs text-zinc-400 dark:text-zinc-600 text-center mt-3">
                       Your insights are already collecting. You&apos;re just unlocking the view.
                     </p>
                   </CardContent>
@@ -144,8 +144,8 @@ export default function UpgradePage() {
                   <Check className="w-8 h-8 text-violet-400" />
                 </motion.div>
 
-                <h2 className="text-2xl font-bold text-zinc-50 mb-2">You&apos;re in. Trial activated.</h2>
-                <p className="text-sm text-zinc-400 mb-6">
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">You&apos;re in. Trial activated.</h2>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mb-6">
                   Employee Intelligence is now unlocked for 30 days. Explore your team&apos;s performance below.
                 </p>
 

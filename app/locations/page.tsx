@@ -38,13 +38,13 @@ export default function LocationsPage() {
     <div className="p-6 max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-lg font-semibold text-zinc-50">Locations</h1>
-          <span className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-400 rounded-full px-2 py-0.5">
+          <h1 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Locations</h1>
+          <span className="text-xs bg-gray-100 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 text-zinc-500 dark:text-zinc-400 rounded-full px-2 py-0.5">
             {locations.length} active
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-zinc-500">Sort by:</span>
+          <span className="text-xs text-zinc-400 dark:text-zinc-500">Sort by:</span>
           {sortButtons.map(btn => (
             <Button
               key={btn.key}

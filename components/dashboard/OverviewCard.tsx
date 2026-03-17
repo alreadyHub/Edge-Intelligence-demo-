@@ -48,18 +48,18 @@ export function OverviewCard({
       </CardHeader>
       <CardContent>
         <div className="flex items-baseline gap-1.5">
-          <span className="text-3xl font-mono font-medium text-zinc-50">
+          <span className="text-3xl font-mono font-medium text-zinc-900 dark:text-zinc-50">
             {isNaN(numValue) ? (
-              <span className="text-zinc-600 text-lg">—</span>
+              <span className="text-zinc-300 dark:text-zinc-600 text-lg">—</span>
             ) : (
               <AnimatedNumber value={numValue} isScore={isScore} />
             )}
           </span>
-          {suffix && <span className="text-zinc-500 text-sm font-mono">{suffix}</span>}
+          {suffix && <span className="text-zinc-400 dark:text-zinc-500 text-sm font-mono">{suffix}</span>}
         </div>
         {delta !== undefined && (
           <div className={cn('mt-1.5 text-xs font-mono', getDeltaColor(delta))}>
-            {formatDelta(delta)} <span className="text-zinc-600">{comparePeriod}</span>
+            {formatDelta(delta)} <span className="text-zinc-400 dark:text-zinc-600">{comparePeriod}</span>
           </div>
         )}
       </CardContent>

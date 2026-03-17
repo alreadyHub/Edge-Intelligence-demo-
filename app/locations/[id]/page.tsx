@@ -28,20 +28,20 @@ function ThemeCard({ theme, samples, type }: ThemeCardProps) {
     <div className={`rounded-lg border p-3 ${type === 'strength' ? 'border-emerald-400/20 bg-emerald-400/5' : 'border-amber-400/20 bg-amber-400/5'}`}>
       <button onClick={() => setExpanded(!expanded)} className="w-full text-left">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-zinc-200">{theme}</span>
+          <span className="text-sm text-zinc-700 dark:text-zinc-200">{theme}</span>
           <div className="flex items-center gap-2">
             {type === 'issue' && (
               <button
                 onClick={(e) => { e.stopPropagation(); setFlagged(!flagged) }}
                 className={`text-xs flex items-center gap-1 rounded px-1.5 py-0.5 transition-colors ${
-                  flagged ? 'text-amber-400 bg-amber-400/10' : 'text-zinc-500 hover:text-amber-400'
+                  flagged ? 'text-amber-400 bg-amber-400/10' : 'text-zinc-400 dark:text-zinc-500 hover:text-amber-400'
                 }`}
               >
                 <Flag className="w-3 h-3" />
                 {flagged ? 'Flagged' : 'Flag'}
               </button>
             )}
-            {expanded ? <ChevronUp className="w-3.5 h-3.5 text-zinc-500" /> : <ChevronDown className="w-3.5 h-3.5 text-zinc-500" />}
+            {expanded ? <ChevronUp className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" /> : <ChevronDown className="w-3.5 h-3.5 text-zinc-400 dark:text-zinc-500" />}
           </div>
         </div>
       </button>
@@ -74,7 +74,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <Link href="/locations" className="flex items-center gap-1.5 text-xs text-zinc-500 hover:text-zinc-300 mb-4 transition-colors">
+      <Link href="/locations" className="flex items-center gap-1.5 text-xs text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 mb-4 transition-colors">
         <ArrowLeft className="w-3.5 h-3.5" /> Back to Locations
       </Link>
 
@@ -82,22 +82,22 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
       <div className="flex items-start justify-between mb-6">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <h1 className="text-2xl font-bold text-zinc-50">{location.name}</h1>
+            <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">{location.name}</h1>
             <Badge className={`border ${getStatusColor(status)}`} variant="outline">
               {getStatusLabel(status)}
             </Badge>
           </div>
-          <p className="text-sm text-zinc-500">{location.city}</p>
+          <p className="text-sm text-zinc-400 dark:text-zinc-500">{location.city}</p>
         </div>
         <div className="text-right">
           <div className="flex items-baseline gap-1.5">
             <span className={`text-4xl font-mono font-medium ${getScoreColor(location.scores[scoreKey])}`}>
               {location.scores[scoreKey].toFixed(1)}
             </span>
-            <span className="text-zinc-600 font-mono">/5.0</span>
+            <span className="text-zinc-400 dark:text-zinc-600 font-mono">/5.0</span>
           </div>
           <div className={`text-sm font-mono ${getDeltaColor(delta)}`}>{formatDelta(delta)}</div>
-          <p className="text-xs text-zinc-600 mt-1">
+          <p className="text-xs text-zinc-400 dark:text-zinc-600 mt-1">
             {timeState === 'day1' ? 'Sample data' : `${location.feedbackCounts[scoreKey].toLocaleString()} responses`}
           </p>
         </div>
@@ -105,8 +105,8 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
 
       {/* Trend chart */}
       {timeState !== 'day1' && (
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 mb-6">
-          <h2 className="text-sm font-semibold text-zinc-100 mb-4">Score Trend</h2>
+        <div className="rounded-xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5 mb-6">
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-4">Score Trend</h2>
           <TrendChart singleLocationId={params.id} />
         </div>
       )}
@@ -114,7 +114,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
       {/* Strengths vs Issues */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <h2 className="text-sm font-semibold text-zinc-100 mb-3">What&apos;s Working</h2>
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">What&apos;s Working</h2>
           <div className="space-y-2">
             {location.strengths.map(s => (
               <ThemeCard key={s.theme} theme={s.theme} samples={s.samples} type="strength" />
@@ -122,7 +122,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           </div>
         </div>
         <div>
-          <h2 className="text-sm font-semibold text-zinc-100 mb-3">Needs Attention</h2>
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Needs Attention</h2>
           <div className="space-y-2">
             {location.issues.map(i => (
               <ThemeCard key={i.theme} theme={i.theme} samples={i.samples} type="issue" />
@@ -134,7 +134,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
       {/* Employee grid */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-zinc-100">Employee Performance</h2>
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Employee Performance</h2>
           {!isPremium && (
             <Link href="/upgrade" className="text-xs text-violet-400 hover:text-violet-300">
               Unlock full profiles →
@@ -142,7 +142,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           )}
         </div>
         {!isPremium && (
-          <p className="text-xs text-zinc-500 mb-3">
+          <p className="text-xs text-zinc-400 dark:text-zinc-500 mb-3">
             See how each instructor is performing based on real member feedback.
           </p>
         )}
@@ -153,7 +153,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
         </div>
         {!isPremium && (
           <div className="mt-4 rounded-lg border border-violet-600/30 bg-violet-600/5 p-4 flex items-center justify-between">
-            <p className="text-sm text-zinc-300">Unlock Employee Intelligence — see scores, trends, and SMS feedback per instructor.</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-300">Unlock Employee Intelligence — see scores, trends, and SMS feedback per instructor.</p>
             <Link href="/upgrade">
               <Button size="sm">Start Free Trial</Button>
             </Link>
@@ -163,7 +163,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
 
       {/* Feedback feed */}
       <div>
-        <h2 className="text-sm font-semibold text-zinc-100 mb-3">Recent Member Feedback</h2>
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Recent Member Feedback</h2>
         <div className="space-y-2">
           {feedback.map((msg, i) => (
             <div key={i} className="relative">
@@ -180,7 +180,7 @@ export default function LocationDetailPage({ params }: { params: { id: string } 
           <Button
             variant="ghost"
             size="sm"
-            className="mt-3 text-zinc-500"
+            className="mt-3 text-zinc-400 dark:text-zinc-500"
             onClick={() => setFeedbackCount(c => c + 10)}
           >
             Load more

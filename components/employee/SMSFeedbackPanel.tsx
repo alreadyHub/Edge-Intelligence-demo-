@@ -21,14 +21,14 @@ function highlightEmployee(text: string, name?: string): React.ReactNode {
 
 export function SMSBubble({ message, highlightName }: SMSBubbleProps) {
   return (
-    <div className="bg-zinc-800 rounded-xl px-4 py-3 space-y-1">
+    <div className="bg-gray-100 dark:bg-zinc-800 rounded-xl px-4 py-3 space-y-1">
       <div className="flex items-center gap-2">
-        <span className="text-xs bg-zinc-700 text-zinc-400 rounded px-1.5 py-0.5">
+        <span className="text-xs bg-gray-200 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 rounded px-1.5 py-0.5">
           Member #{message.memberId}
         </span>
-        <span className="text-xs text-zinc-600">{message.date}</span>
+        <span className="text-xs text-zinc-400 dark:text-zinc-600">{message.date}</span>
       </div>
-      <p className="text-sm text-zinc-200 font-mono leading-relaxed">
+      <p className="text-sm text-zinc-700 dark:text-zinc-200 font-mono leading-relaxed">
         {highlightEmployee(message.message, highlightName || message.employeeName)}
       </p>
     </div>

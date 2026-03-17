@@ -14,20 +14,20 @@ import { cn } from '@/lib/utils'
 
 function EmailPreview() {
   return (
-    <div className="rounded-xl border border-zinc-700 overflow-hidden shadow-xl">
+    <div className="rounded-xl border border-gray-200 dark:border-zinc-700 overflow-hidden shadow-xl">
       {/* Email client chrome */}
-      <div className="bg-zinc-800 px-4 py-2.5 border-b border-zinc-700 flex items-center gap-2">
+      <div className="bg-gray-100 dark:bg-zinc-800 px-4 py-2.5 border-b border-gray-200 dark:border-zinc-700 flex items-center gap-2">
         <div className="flex gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-rose-500/60" />
           <div className="w-2.5 h-2.5 rounded-full bg-amber-500/60" />
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/60" />
         </div>
         <div className="flex-1 text-center">
-          <span className="text-xs text-zinc-500">Weekly Digest Preview</span>
+          <span className="text-xs text-zinc-400 dark:text-zinc-500">Weekly Digest Preview</span>
         </div>
       </div>
 
-      {/* Email body */}
+      {/* Email body — always light (simulates email client) */}
       <div className="bg-white p-6 font-mono text-[13px] leading-relaxed text-gray-800 max-h-[600px] overflow-y-auto">
         <div className="max-w-lg mx-auto">
           {/* Header */}
@@ -135,7 +135,7 @@ export default function ReportsPage() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      <h1 className="text-lg font-semibold text-zinc-50 mb-6">Reports</h1>
+      <h1 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 mb-6">Reports</h1>
 
       <div className="grid grid-cols-2 gap-6 items-start">
         {/* Settings */}
@@ -147,15 +147,15 @@ export default function ReportsPage() {
             <CardContent className="space-y-4">
               {/* Cadence */}
               <div>
-                <label className="text-xs text-zinc-500 mb-2 block">Delivery cadence</label>
-                <div className="flex items-center gap-1 bg-zinc-800 rounded-lg p-1 w-fit">
+                <label className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 block">Delivery cadence</label>
+                <div className="flex items-center gap-1 bg-gray-100 dark:bg-zinc-800 rounded-lg p-1 w-fit">
                   {(['weekly', 'monthly'] as const).map(c => (
                     <button
                       key={c}
                       onClick={() => setCadence(c)}
                       className={cn(
                         'px-4 py-1.5 rounded-md text-xs font-medium capitalize transition-colors',
-                        cadence === c ? 'bg-zinc-700 text-zinc-100' : 'text-zinc-500 hover:text-zinc-300'
+                        cadence === c ? 'bg-gray-200 dark:bg-zinc-700 text-zinc-900 dark:text-zinc-100' : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
                       )}
                     >
                       {c}
@@ -166,7 +166,7 @@ export default function ReportsPage() {
 
               {/* Email */}
               <div>
-                <label className="text-xs text-zinc-500 mb-2 block">Delivery email</label>
+                <label className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 block">Delivery email</label>
                 <Input
                   type="email"
                   value={email}
@@ -177,7 +177,7 @@ export default function ReportsPage() {
 
               {/* Locations */}
               <div>
-                <label className="text-xs text-zinc-500 mb-2 block">Locations included</label>
+                <label className="text-xs text-zinc-400 dark:text-zinc-500 mb-2 block">Locations included</label>
                 <div className="space-y-2">
                   {locations.map(loc => (
                     <label key={loc.id} className="flex items-center gap-2.5 cursor-pointer">
@@ -185,10 +185,10 @@ export default function ReportsPage() {
                         type="checkbox"
                         checked={selectedLocations.includes(loc.id)}
                         onChange={() => toggleLocation(loc.id)}
-                        className="rounded border-zinc-600 accent-violet-500"
+                        className="rounded border-gray-300 dark:border-zinc-600 accent-violet-500"
                       />
-                      <span className="text-sm text-zinc-300">{loc.name}</span>
-                      <span className="text-xs text-zinc-600">{loc.city}</span>
+                      <span className="text-sm text-zinc-700 dark:text-zinc-300">{loc.name}</span>
+                      <span className="text-xs text-zinc-400 dark:text-zinc-600">{loc.city}</span>
                     </label>
                   ))}
                 </div>
@@ -197,9 +197,9 @@ export default function ReportsPage() {
               {/* Employee breakdown */}
               <div className="flex items-center justify-between">
                 <div>
-                  <label className="text-sm text-zinc-300">Include employee breakdown</label>
+                  <label className="text-sm text-zinc-700 dark:text-zinc-300">Include employee breakdown</label>
                   {!isPremium && (
-                    <p className="text-xs text-zinc-600 mt-0.5">Employee-level reporting available in Premium</p>
+                    <p className="text-xs text-zinc-400 dark:text-zinc-600 mt-0.5">Employee-level reporting available in Premium</p>
                   )}
                 </div>
                 <div className="flex items-center gap-2">
@@ -229,7 +229,7 @@ export default function ReportsPage() {
 
         {/* Email preview */}
         <div>
-          <h2 className="text-sm font-semibold text-zinc-100 mb-3">Report Preview</h2>
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 mb-3">Report Preview</h2>
           <EmailPreview />
         </div>
       </div>
