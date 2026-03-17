@@ -6,7 +6,7 @@ import { ArrowLeft, ChevronDown, ChevronUp, Edit2 } from 'lucide-react'
 import Link from 'next/link'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer
+  ReferenceLine, ResponsiveContainer
 } from 'recharts'
 import { useTime } from '@/context/TimeContext'
 import { useUpgrade } from '@/context/UpgradeContext'
@@ -14,6 +14,7 @@ import { getEmployee, getLocation } from '@/lib/mockData'
 import { PaywallModal } from '@/components/freemium/PaywallModal'
 import { SMSBubble } from '@/components/employee/SMSFeedbackPanel'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { getTrendColor, getTrendLabel, getScoreColor, getDeltaColor, formatDelta } from '@/lib/utils'
 import { motion } from 'framer-motion'
 
@@ -71,15 +72,12 @@ function ThemeSection({ title, items, messages, type }: {
   )
 }
 
-interface EmpTooltipPayload { name: string; value?: number }
-interface EmpTooltipProps { active?: boolean; payload?: EmpTooltipPayload[]; label?: string }
-
-const CustomTooltip = ({ active, payload, label }: EmpTooltipProps) => {
+const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null
   return (
     <div className="bg-zinc-800 border border-zinc-700 rounded-lg px-3 py-2 text-xs shadow-xl">
       <p className="text-zinc-400 mb-1">{label}</p>
-      {payload.map((p) => (
+      {payload.map((p: any) => (
         <div key={p.name} className="flex items-center gap-2">
           <span className="text-zinc-400">{p.name === 'score' ? 'Score' : 'Location avg'}</span>
           <span className="font-mono text-zinc-100">{p.value?.toFixed(1)}</span>
@@ -93,6 +91,7 @@ export default function EmployeeDetailPage({ params }: { params: { id: string } 
   const employee = getEmployee(params.id)
   const { timeState } = useTime()
   const { upgradeStatus } = useUpgrade()
+  const [paywallOpen, setPaywallOpen] = useState(false)
   const [editingNotes, setEditingNotes] = useState(false)
   const [notes, setNotes] = useState(
     employee?.trend === 'declining'
@@ -220,9 +219,9 @@ export default function EmployeeDetailPage({ params }: { params: { id: string } 
           <ThemeSection
             title="Strengths"
             items={employee.strengths}
-            messages={employee.smsExamples.filter(m =>
-              !m.message.toLowerCase().includes('not') && !m.message.toLowerCase().includes('off') && !m.message.toLowerCase().includes('distract')
-            )}
+            messages={employee.smsExamples.filter(m => !employee.issues.some(issue =>
+              m.message.toLowerCase().includes('not') || m.message.toLowerCase().includes('off') || m.message.toLowerCase().includes('distract')
+            ))}
             type="strength"
           />
           {employee.issues.length > 0 && (
